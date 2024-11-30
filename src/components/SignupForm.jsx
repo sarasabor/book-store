@@ -13,7 +13,7 @@ const SignupForm = () => {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/sign-up', { //* req.body
+            const response = await axios.post('https://book-store-api-9hck.onrender.com/sign-up', { //* req.body
                 //* key -> value
                 email,
                 password
