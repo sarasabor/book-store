@@ -1,10 +1,13 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const LoginForm = () => {
 
     const navigate = useNavigate();
+
+    const { login } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -21,7 +24,7 @@ const LoginForm = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('https://book-store-api-9hck.onrender.com/login', {
+            const response = await axios.post('http://localhost:5000/login', {
                 email: formData.email,
                 password: formData.password
             }, {
@@ -29,9 +32,14 @@ const LoginForm = () => {
                 withCredentials: true
             });
 
-            const data = response.data;
+            const userData = response.data;
 
-            navigate(data.redirect);
+            //* Save The user To LocalStorage
+            localStorage.setItem('user', userData);
+
+            login(userData); //* This login form from the authContext to update the state of the User
+
+            // navigate(data.redirect);
             
         } catch (error) {
             const { data } = error.response;

@@ -10,7 +10,7 @@ const BooksByGenre = () => {
 
     const fetchBooksByGenre = async() => {
         try {
-            const response = await axios.get(`https://book-store-api-9hck.onrender.com/books/genre/${genre}`);
+            const response = await axios.get(`http://localhost:5000/books/genre/${genre}`);
             const data = response.data;
 
             setBooks(data);

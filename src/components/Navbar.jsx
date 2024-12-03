@@ -1,9 +1,17 @@
 
-import React from 'react'
+import React, { useContext } from 'react'
 import {navLinks} from '../constants/constants'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../context/AuthContext'
 
-const Navbar = () => {   
+const Navbar = () => { 
+
+    const { logOut } = useContext(AuthContext);
+    
+    const handleLogOut = () => {
+        logOut();
+    }
+
   return (
     <div>
         <nav className='px-4 sm:px-6 lg:px-8 xl:px-[6.2rem] 2xl:px-32 bg-slate-200 flex justify-between py-[2rem] '>
@@ -20,6 +28,13 @@ const Navbar = () => {
                             transition-transform duration-150'>{e.text}</Link>
                         </li>
                     ))}
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        <button onClick={handleLogOut}>Log out</button>
+                    </li>
                 </ul>
             </div>
         </nav>  

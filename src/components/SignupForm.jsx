@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const SignupForm = () => {
 
@@ -10,10 +11,12 @@ const SignupForm = () => {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState('');
 
+    const { login } = useContext(AuthContext);
+
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://book-store-api-9hck.onrender.com/sign-up', { //* req.body
+            const res = await axios.post('http://localhost:5000/sign-up', { //* req.body
                 //* key -> value
                 email,
                 password
@@ -22,8 +25,14 @@ const SignupForm = () => {
                 headers: { 'Content-Type' : 'application/json'},
                 withCredentials: true
             });
-            const data = response.data;
-            navigate(data.redirect);
+            const userData = await res.data;
+            
+            //* Save The user To LocalStorage
+            localStorage.setItem('user', userData);
+
+            login(userData); //* This login form from the authContext to update the state of the User
+
+
         } catch (error) {
             setErrors(error.response.data);
         }
