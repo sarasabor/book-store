@@ -1,11 +1,8 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const SignupForm = () => {
-
-    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -14,6 +11,7 @@ const SignupForm = () => {
     const { login } = useContext(AuthContext);
 
     const handleSubmit = async(e) => {
+
         e.preventDefault();
         try {
             const res = await axios.post('http://localhost:5000/sign-up', { //* req.body

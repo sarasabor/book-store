@@ -6,7 +6,7 @@ import { AuthContext } from '../context/AuthContext'
 
 const Navbar = () => { 
 
-    const { logOut } = useContext(AuthContext);
+    const { logOut, user } = useContext(AuthContext);
     
     const handleLogOut = () => {
         logOut();
@@ -30,13 +30,15 @@ const Navbar = () => {
                     ))}
                 </ul>
             </div>
-            <div>
-                <ul>
-                    <li>
-                        <button onClick={handleLogOut}>Log out</button>
-                    </li>
-                </ul>
-            </div>
+            {user && (
+                <div>
+                    <ul>
+                        <li>
+                            <button onClick={handleLogOut}>Log out</button>
+                        </li>
+                    </ul>
+                </div>
+            )}
         </nav>  
     </div>
   )

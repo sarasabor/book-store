@@ -5,17 +5,13 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 //* Importing the routes
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
 import BooksByGenre from "./components/BooksByGenre";
 import SignupForm from "./components/SignupForm";
 import LoginForm from "./components/LoginForm";
 import NotFound from "./components/NotFound";
-
-//* Axios
-import axios from "axios";
-import AuthContextProvider from "./context/AuthContext";
-
-// axios.defaults.withCredentials = true;
+import AuthContextProvider, { AuthContext } from "./context/AuthContext";
+import { useContext } from "react";
 
 function App() {
 
@@ -24,18 +20,26 @@ function App() {
         <AuthContextProvider>
           <BooksContextProvider>
             <Navbar />
-              <Routes>
-                <Route path="/" element={<Hero />}  />
-                <Route path='/books' element={<AllBooks />} />
-                <Route path='/books/genre/:genre' element={<BooksByGenre />} />
-                <Route path="/sign-up" element={<SignupForm />} />
-                <Route path="/login" element={<LoginForm/>} />
-                {/* <Route path="*" element={<NotFound />} /> */}
-              </Routes>
+              <AppContent />
             <Footer /> 
           </BooksContextProvider>
         </AuthContextProvider>
       </Router>
+  );
+}
+
+function AppContent() {
+  const {user} = useContext(AuthContext);
+
+  return (
+    <Routes>
+      <Route path="/" element={<Hero />} />
+      <Route path="/books" element={user ? <AllBooks /> : <Navigate to="/login" />} />
+      <Route path="/books/genre/:genre" element={user ? <BooksByGenre /> : <Navigate to='/login' />} />
+      <Route path="/sign-up" element={!user ? <SignupForm /> : <Navigate to='/' />} />
+      <Route path="/login" element={!user ? <LoginForm /> : <Navigate to='/' /> } />
+      {/* <Route path="*" element={<NotFound />} /> */}
+    </Routes>
   );
 }
 
