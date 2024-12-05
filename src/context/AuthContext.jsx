@@ -8,7 +8,7 @@ const AuthContextProvider = ({children}) => {
 
     const [user, setUser] = useState(null);
 
-    console.log(user);
+    // console.log(user);
 
     const login = (userData) => {
         setUser(userData);
