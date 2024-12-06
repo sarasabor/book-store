@@ -12,6 +12,7 @@ import LoginForm from "./components/LoginForm";
 import NotFound from "./components/NotFound";
 import AuthContextProvider, { AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
+import GetBookById from "./components/GetBookById";
 
 function App() {
 
@@ -35,10 +36,11 @@ function AppContent() {
     <Routes>
       <Route path="/" element={<Hero />} />
       <Route path="/books" element={user ? <AllBooks /> : <Navigate to="/login" />} />
+      <Route path="/books/:id" element={user ? <GetBookById /> : <Navigate to="/login"/>} />
       <Route path="/books/genre/:genre" element={user ? <BooksByGenre /> : <Navigate to='/login' />} />
       <Route path="/sign-up" element={!user ? <SignupForm /> : <Navigate to='/' />} />
       <Route path="/login" element={!user ? <LoginForm /> : <Navigate to='/' /> } />
-      {/* <Route path="*" element={<NotFound />} /> */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

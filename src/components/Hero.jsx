@@ -1,6 +1,7 @@
 import React from 'react'
 import coverImage from '../images/coverPhoto.jpg';
 import BooksGenre from './BooksGenre';
+import { Link } from 'react-router-dom';
 
 
 const Hero = () => {
@@ -23,7 +24,9 @@ const Hero = () => {
                 </h1>
                 <button 
                   className='border-2 border-orange-600 p-2 font-semibold text-gray-800 text-sm mt-2'
-                >Shop now</button>
+                >
+                  <Link to="/books">Shop now</Link>
+                </button>
             </div>
         </div> 
         <BooksGenre title='Books Genre'/>
