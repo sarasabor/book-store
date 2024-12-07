@@ -11,7 +11,10 @@ export const navLinks = [
     {
         href : "/contact",
         text : "Contact Us"
-    },
+    }
+];
+
+export const loginLinks = [
     {
         href : "/sign-up",
         text : "Sign up"

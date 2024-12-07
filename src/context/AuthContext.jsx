@@ -15,11 +15,6 @@ const AuthContextProvider = ({children}) => {
         localStorage.setItem('user', JSON.stringify(userData));
     }
 
-    // const signUp = (userData) => {
-    //     setUser(userData);
-    //     navigate('/login');
-    // }
-
     const logOut = () => {
         setUser(null);
         localStorage.removeItem('user');

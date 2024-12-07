@@ -1,45 +1,29 @@
+import React from 'react'
+import MobileMenu from './MobileMenu'
+import LeftSection from './LeftSection'
+import RightSection from './RightSection'
 
-import React, { useContext } from 'react'
-import {navLinks} from '../constants/constants'
-import { Link } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext'
-
-const Navbar = () => { 
-
-    const { logOut, user } = useContext(AuthContext);
-    
-    const handleLogOut = () => {
-        logOut();
-    }
-
+const Navbar = () => {
   return (
-    <div>
-        <nav className='px-4 sm:px-6 lg:px-8 xl:px-[6.2rem] 2xl:px-32 bg-slate-200 flex justify-between py-[2rem] '>
-            <Link to='/'>
-                <h1 className='font-bold text-[1.4rem] text-orange-600'>
-                    Books Store
-                </h1>
-            </Link>
-            <div>
-                <ul className='decoration-solid flex gap-4'>
-                    {navLinks.map((e,i)=>(
-                        <li key={i}>
-                            <Link to={e.href} className='text-gray-600 inline-block hover:font-semibold min-w-[30px] 
-                            transition-transform duration-150'>{e.text}</Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            {user && (
-                <div>
-                    <ul>
-                        <li>
-                            <button onClick={handleLogOut}>Log out</button>
-                        </li>
-                    </ul>
-                </div>
-            )}
-        </nav>  
+    <div className='px-4 sm:px-6 lg:px-8 xl:px-[6.2rem] 2xl:px-32 bg-slate-200 flex justify-between py-[2rem]'>
+        
+        {/* Mobile Section */}
+        <section className="md:hidden w-full ">
+            <MobileMenu />
+        </section>
+
+        {/* Desktop Screens */}
+        <section className='hidden md:flex justify-between items-center w-full'>
+            {/* LEFT SECTION */}
+            <section className=''>
+                <LeftSection />
+            </section>
+
+            {/* RIGHT SECTION */}
+            <section className=''>
+                <RightSection />
+            </section>
+        </section>
     </div>
   )
 }
