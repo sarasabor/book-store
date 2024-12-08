@@ -17,7 +17,7 @@ const SignupForm = () => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const res = await axios.post('http://localhost:5000/sign-up', { //* req.body
+            const res = await axios.post('https://book-store-api-9hck.onrender.com/sign-up', { //* req.body
                 //* key -> value
                 email,
                 password

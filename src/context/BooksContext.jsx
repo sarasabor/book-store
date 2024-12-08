@@ -14,7 +14,7 @@ const BooksContextProvider = ({children}) => {
 
     const fetchBooks = async() => {
         try {
-            const response = await axios.get('http://localhost:5000/books', {
+            const response = await axios.get('https://book-store-api-9hck.onrender.com/books', {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 }

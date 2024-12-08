@@ -24,7 +24,7 @@ const LoginForm = () => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const response = await axios.post('http://localhost:5000/login', {
+            const response = await axios.post('https://book-store-api-9hck.onrender.com/login', {
                 email: formData.email,
                 password: formData.password
             }, {
