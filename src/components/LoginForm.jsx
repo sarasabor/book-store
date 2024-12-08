@@ -50,7 +50,7 @@ const LoginForm = () => {
     }
 
   return (
-    <div className='w-[90%] sm:w-[60%]b md:w-[40%] lg:w-[30%] mx-auto p-[20px] bg-gray-100 shadow-lg rounded-lg mt-[1.6rem]'>
+    <div className='w-[80%] sm:w-[60%]b md:w-[40%] lg:w-[30%] mx-auto p-[20px] bg-gray-100 shadow-lg rounded-lg mt-[2.3rem] max-sm:h-[370px]'>
       <h2 className='text-[1.5rem] font-bold text-orange-600 mb-4'>Login</h2>
         <form onSubmit={handleSubmit}>
             <div className='mb-4'>
@@ -79,7 +79,7 @@ const LoginForm = () => {
                     value={formData.password}
                     onChange={handleChange}
                       className='w-full p-[10px] mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 
-                    focus:ring-orange-600'
+                    focus:ring-orange-600 mb-[.9rem]'
                 />
                 {errors && errors.password && (
                     <span className='text-red-600 text-sm font-semibold mt-1 lowercase'>{errors.password}</span>
