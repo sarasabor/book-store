@@ -46,7 +46,7 @@ const Contact = () => {
         >Contact Us</h2>
         <form 
             onSubmit={handleSubmit}
-            className='max-w-[60%] mx-auto p-8 rounded-md space-y-6'
+            className='max-w-[60%] max-sm:min-w-[90%] mx-auto p-8 rounded-md space-y-6'
         >
             <div>
                 <label htmlFor="name" className='block text-gray-700 font-medium'>Name: </label>

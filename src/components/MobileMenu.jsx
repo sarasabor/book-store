@@ -39,7 +39,7 @@ const MobileMenu = () => {
         />
             {menu && (
                 <ul 
-                    className='absolute left-[178px] top-[5rem] text-gray-600 bg-white gap-2 
+                    className='absolute left-[178px] top-[6rem] text-gray-600 bg-white gap-2 
                     w-[calc(100%-29%)] flex flex-col h-full z-10 pl-[1.5rem] font-semibold space-y-[1rem]'
                 >
                 {navLinks.map((e,i)=>(
