@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
+import SubmitButton from './SubmitButton';
 
 const SignupForm = () => {
 
@@ -8,11 +9,13 @@ const SignupForm = () => {
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState('');
 
+    const [ isLoading, setIsLoading] = useState(false);
+
     const { login } = useContext(AuthContext);
 
     const handleSubmit = async(e) => {
-
         e.preventDefault();
+        setIsLoading(true);
         try {
             const res = await axios.post('http://localhost:5000/sign-up', { //* req.body
                 //* key -> value
@@ -30,10 +33,11 @@ const SignupForm = () => {
 
             login(userData); //* This login form from the authContext to update the state of the User
 
-
+            setIsLoading(false);
         } catch (error) {
             setErrors(error.response.data);
             // console.log(error);
+            setIsLoading(false);
         }
     }
 
@@ -78,12 +82,7 @@ const SignupForm = () => {
                 )}
             </div>
             <div>
-                <input 
-                    type="submit" 
-                    value="Signup" 
-                    className='py-[12px] px-[30px] bg-orange-600 text-white mt-[14px] font-semibold rounded-md outline-none
-                    cursor-pointer hover:bg-orange-700 transition duration-[.4s]'
-                />
+                <SubmitButton isLoading={isLoading} />
             </div>
         </form>
     </div>

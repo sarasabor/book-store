@@ -18,7 +18,7 @@ const GetBookById = () => {
   const fetchBook = async() => {
     setLoading(true); //* Start Loading
     try {
-      const res = await axios.get(`http://localhost:5000/books/${id}`, { 
+      const res = await axios.get(`/books/${id}`, { 
         headers: {
           'Authorization': `Bearer ${user.token}`
         }

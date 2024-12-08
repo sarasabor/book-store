@@ -1,11 +1,10 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import SubmitButton from './SubmitButton';
 
 const LoginForm = () => {
 
-    const navigate = useNavigate();
 
     const { login } = useContext(AuthContext);
 
@@ -14,15 +13,16 @@ const LoginForm = () => {
         password: '',
     });
     const [errors, setErrors] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     //* DRY : DON'T REPEAT YOURSELF
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setIsLoading(true);
         try {
             const response = await axios.post('http://localhost:5000/login', {
                 email: formData.email,
@@ -39,12 +39,13 @@ const LoginForm = () => {
 
             login(userData); //* This login form from the authContext to update the state of the User
 
-            // navigate(data.redirect);
+            setIsLoading(false);
             
         } catch (error) {
             const { data } = error.response;
             // console.log(error);
             setErrors(data);
+            setIsLoading(false);
         }
     }
 
@@ -85,10 +86,7 @@ const LoginForm = () => {
                 )}
             </div>
             <div>
-                <input type="submit" value='Login'
-                 className='py-[12px] px-[30px] bg-orange-600 text-white mt-[14px] font-semibold rounded-md outline-none
-                    cursor-pointer hover:bg-orange-700 transition duration-[.4s]'
-                />
+               <SubmitButton isLoading={isLoading} />
             </div>
         </form>
     </div>

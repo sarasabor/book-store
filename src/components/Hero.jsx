@@ -2,6 +2,7 @@ import React from 'react'
 import coverImage from '../images/coverPhoto.jpg';
 import BooksGenre from './BooksGenre';
 import { Link } from 'react-router-dom';
+import Contact from './Contact';
 
 
 const Hero = () => {
@@ -30,6 +31,7 @@ const Hero = () => {
             </div>
         </div> 
         <BooksGenre title='Books Genre'/>
+        <Contact />
        
     </div>
   )

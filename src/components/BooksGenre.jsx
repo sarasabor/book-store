@@ -7,7 +7,7 @@ const BooksGenre = ({title}) => {
 
   return (
     <div className='px-4 sm:px-6 lg:px-8 xl:px-16 2xl:px-32 mt-[5rem] '>
-        <h1 className='text-[1.5rem] sm:text-[2rem] text-gray-950 font-medium '>{title}</h1>
+        <h1 className='text-[1.5rem] sm:text-[2rem] text-orange-600 font-medium '>{title}</h1>
          <div className='flex justify-center flex-wrap gap-y-[8rem] gap-x-[3rem] mt-[2rem]'>
          {booksGenreCollection.map((item, index) => (
           <Link
