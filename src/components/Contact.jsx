@@ -24,10 +24,12 @@ const Contact = () => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const res = await axios.post('https://book-store-api-9hck.onrender.com/api/contact', {
+            const res = await axios.post('https://book-store-b1dk.onrender.com/api/contact', {
                 name: formData.name,
                 email: formData.email,
                 message: formData.message
+            }, {
+                withCredentials: true
             }); 
             toast.success('Email Sent Successfully');
 
@@ -35,6 +37,7 @@ const Contact = () => {
             setIsLoading(false);
         } catch (error) {
            toast.error(error.message);
+           console.log(error)
            setIsLoading(false);
         }
     }
