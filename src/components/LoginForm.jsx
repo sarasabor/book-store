@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { buildApiUrl, config } from '../config/config';
 import SubmitButton from './SubmitButton';
 
 const LoginForm = () => {
@@ -24,12 +25,13 @@ const LoginForm = () => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const response = await axios.post('https://book-store-api-9hck.onrender.com/login', {
+            const response = await axios.post(buildApiUrl(config.ENDPOINTS.AUTH.LOGIN), {
                 email: formData.email,
                 password: formData.password
             }, {
                 headers: {'Content-Type': 'application/json'},
-                withCredentials: true
+                withCredentials: true,
+                timeout: config.REQUEST_CONFIG.TIMEOUT
             });
 
             const userData = response.data;
@@ -65,7 +67,7 @@ const LoginForm = () => {
                     focus:ring-orange-600'
                 />
                 {errors && errors.email && (
-                    <span className='text-red-600 text-sm font-semibold mt-1 lowercase'>{errors.email}</span>
+                    <span className='mt-1 text-sm font-semibold text-red-600 lowercase'>{errors.email}</span>
                 )}
             </div>
             <div>
@@ -82,7 +84,7 @@ const LoginForm = () => {
                     focus:ring-orange-600 mb-[.9rem]'
                 />
                 {errors && errors.password && (
-                    <span className='text-red-600 text-sm font-semibold mt-1 lowercase'>{errors.password}</span>
+                    <span className='mt-1 text-sm font-semibold text-red-600 lowercase'>{errors.password}</span>
                 )}
             </div>
             <div>

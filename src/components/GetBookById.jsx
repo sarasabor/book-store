@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
+import { buildApiUrl, config } from '../config/config'
 
 const GetBookById = () => {
 
@@ -18,10 +19,11 @@ const GetBookById = () => {
   const fetchBook = async() => {
     setLoading(true); //* Start Loading
     try {
-      const res = await axios.get(`/books/${id}`, { 
+      const res = await axios.get(buildApiUrl(`/books/${id}`), { 
         headers: {
           'Authorization': `Bearer ${user.token}`
-        }
+        },
+        timeout: config.REQUEST_CONFIG.TIMEOUT
       });
       const { data } = res;
       setBook(data);

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext';
+import { buildApiUrl, config } from '../config/config';
 
 const BooksByGenre = () => {
 
@@ -14,8 +15,9 @@ const BooksByGenre = () => {
 
     const fetchBooksByGenre = async() => {
         try {
-            const response = await axios.get(`https://book-store-api-9hck.onrender.com/books/genre/${genre}`, {
-                headers: {'Authorization': `Bearer ${user.token}`}
+            const response = await axios.get(buildApiUrl(`/books/genre/${genre}`), {
+                headers: {'Authorization': `Bearer ${user.token}`},
+                timeout: config.REQUEST_CONFIG.TIMEOUT
             });
             const data = await response.data;
             const { booksByGenre } = data;

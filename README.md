@@ -149,8 +149,15 @@ L'application propose une interface moderne et intuitive avec :
 
 ### Production
 
-- Frontend déployé sur : https://book-store-b1dk.onrender.com
-- Backend déployé sur : https://book-store-api-9hck.onrender.com
+### Frontend (Vercel)
+
+- Déployé sur : https://your-vercel-app.vercel.app
+- Configuration : `vercel.json`
+
+### Backend (Railway)
+
+- Déployé sur : https://your-railway-app.up.railway.app
+- Configuration : `railway.json`
 
 ### Variables d'environnement de production
 

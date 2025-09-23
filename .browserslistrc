@@ -1,0 +1,13 @@
+# Browserslist configuration
+# This file is used by autoprefixer, babel, eslint, and other tools.
+
+# For production builds
+> 0.2%
+last 2 versions
+not dead
+not op_mini all
+
+# For development
+last 1 chrome version
+last 1 firefox version
+last 1 safari version

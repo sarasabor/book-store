@@ -3,11 +3,12 @@ const config = {
   // URLs de l'API
   API_BASE_URL: process.env.REACT_APP_API_URL || 'http://localhost:5001',
   
-  // URLs de production (à utiliser en déploiement)
-  PRODUCTION_API_URL: 'https://book-store-api-9hck.onrender.com',
+  // URLs de production (Railway)
+  PRODUCTION_API_URL: process.env.REACT_APP_API_URL || 'https://your-railway-app.up.railway.app',
   
-  // URLs du frontend
+  // URLs du frontend (Vercel)
   FRONTEND_URL: process.env.REACT_APP_FRONTEND_URL || 'http://localhost:3000',
+  PRODUCTION_FRONTEND_URL: process.env.REACT_APP_FRONTEND_URL || 'https://your-vercel-app.vercel.app',
   
   // Environnement
   ENVIRONMENT: process.env.REACT_APP_ENVIRONMENT || 'development',
@@ -42,4 +43,6 @@ export const buildApiUrl = (endpoint) => {
   return `${getBaseURL()}${endpoint}`;
 };
 
+// Export nommé pour config
+export { config };
 export default config;

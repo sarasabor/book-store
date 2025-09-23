@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
+import { buildApiUrl, config } from '../config/config';
 import SubmitButton from './SubmitButton';
 
 const Contact = () => {
@@ -24,12 +25,13 @@ const Contact = () => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const res = await axios.post('https://book-store-b1dk.onrender.com/api/contact', {
+            const res = await axios.post(buildApiUrl(config.ENDPOINTS.CONTACT), {
                 name: formData.name,
                 email: formData.email,
                 message: formData.message
             }, {
-                withCredentials: true
+                withCredentials: true,
+                timeout: config.REQUEST_CONFIG.TIMEOUT
             }); 
             toast.success('Email Sent Successfully');
 
