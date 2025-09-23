@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
+import { buildApiUrl, config } from '../config/config';
 
 //* the first thing is to create the context 
 export const BooksContext = createContext();
@@ -14,16 +15,19 @@ const BooksContextProvider = ({children}) => {
 
     const fetchBooks = async() => {
         try {
-            const response = await axios.get('https://book-store-api-9hck.onrender.com/books', {
+            const response = await axios.get(buildApiUrl(config.ENDPOINTS.BOOKS), {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
-                }
+                },
+                timeout: config.REQUEST_CONFIG.TIMEOUT
             });
             // console.log(response);
 
             setBooks(response.data);
+            setError(null); // Clear any previous errors
         } catch (error) {
-            setError(error);
+            console.error('Error fetching books:', error);
+            setError(error.response?.data?.message || 'Failed to fetch books');
         }
     }
 

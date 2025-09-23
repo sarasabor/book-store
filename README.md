@@ -1,70 +1,177 @@
-# Getting Started with Create React App
+# 📚 BOOK-STORE - Librairie en ligne
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Une application web complète de librairie en ligne construite avec React et Node.js, permettant aux utilisateurs de parcourir, rechercher et découvrir des livres par genre.
 
-## Available Scripts
+## 🚀 Fonctionnalités
 
-In the project directory, you can run:
+- **Authentification sécurisée** : Inscription et connexion utilisateur avec JWT
+- **Catalogue de livres** : Affichage de tous les livres disponibles
+- **Recherche par genre** : Filtrage des livres par catégorie
+- **Détails des livres** : Pages détaillées pour chaque livre
+- **Interface responsive** : Design adaptatif avec Tailwind CSS
+- **Système de contact** : Formulaire de contact intégré
 
-### `npm start`
+## 🛠️ Technologies utilisées
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React 18.3.1** - Framework JavaScript
+- **React Router DOM** - Navigation et routage
+- **Tailwind CSS** - Framework CSS
+- **Axios** - Requêtes HTTP
+- **React Hot Toast** - Notifications
+- **React Icons** - Icônes
 
-### `npm test`
+### Backend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Node.js** - Runtime JavaScript
+- **Express.js** - Framework web
+- **MongoDB** - Base de données
+- **Mongoose** - ODM pour MongoDB
+- **JWT** - Authentification
+- **Bcrypt** - Hachage des mots de passe
+- **CORS** - Gestion des requêtes cross-origin
 
-### `npm run build`
+## 📁 Structure du projet
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+BOOK-STORE/
+├── book-store/          # Frontend React
+│   ├── src/
+│   │   ├── components/  # Composants React
+│   │   ├── context/     # Context API (Auth, Books)
+│   │   ├── config/      # Configuration
+│   │   └── images/      # Images
+│   └── public/          # Fichiers publics
+└── book-store-api/      # Backend Node.js
+    ├── controllers/     # Contrôleurs
+    ├── models/         # Modèles Mongoose
+    ├── routes/         # Routes Express
+    ├── middlewares/    # Middlewares
+    └── server.js       # Point d'entrée
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Installation et démarrage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prérequis
 
-### `npm run eject`
+- Node.js (version 14 ou supérieure)
+- MongoDB (local ou MongoDB Atlas)
+- npm ou yarn
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 1. Cloner le projet
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git clone <votre-repo>
+cd BOOK-STORE
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2. Configuration de l'environnement
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Frontend (.env dans book-store/)
 
-## Learn More
+```env
+REACT_APP_API_URL=http://localhost:5001
+REACT_APP_FRONTEND_URL=http://localhost:3000
+REACT_APP_ENVIRONMENT=development
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Backend (.env dans book-store-api/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```env
+PORT=5001
+MONGO_URL=mongodb://localhost:27017/bookstore
+JWT_SECRET=votre-clé-secrète-jwt
+NODE_ENV=development
+FRONTEND_URL=http://localhost:3000
+```
 
-### Code Splitting
+### 3. Installation des dépendances
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Backend
 
-### Analyzing the Bundle Size
+```bash
+cd book-store-api
+npm install
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Frontend
 
-### Making a Progressive Web App
+```bash
+cd book-store
+npm install
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 4. Accès à l'application
 
-### Advanced Configuration
+- Frontend : http://localhost:3000
+- Backend API : http://localhost:5001
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📋 API Endpoints
 
-### Deployment
+### Authentification
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- `POST /register` - Inscription utilisateur
+- `POST /login` - Connexion utilisateur
+- `GET /profile` - Profil utilisateur (protégé)
 
-### `npm run build` fails to minify
+### Livres
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `GET /books` - Liste de tous les livres (protégé)
+- `GET /books/:id` - Détails d'un livre (protégé)
+- `GET /books/genre/:genre` - Livres par genre (protégé)
+
+### Contact
+
+- `POST /api/contact` - Envoi de message de contact
+
+## 🔒 Sécurité
+
+- Authentification JWT avec cookies sécurisés
+- Hachage des mots de passe avec bcrypt
+- Validation des données côté serveur
+- Configuration CORS sécurisée
+- Protection des routes sensibles
+
+## 🎨 Interface utilisateur
+
+L'application propose une interface moderne et intuitive avec :
+
+- Navigation responsive
+- Section héro attrayante
+- Cartes de livres avec images
+- Formulaire de contact stylisé
+- Gestion des erreurs utilisateur
+
+## 🚀 Déploiement
+
+### Production
+
+- Frontend déployé sur : https://book-store-b1dk.onrender.com
+- Backend déployé sur : https://book-store-api-9hck.onrender.com
+
+### Variables d'environnement de production
+
+Assurez-vous de configurer les bonnes URLs dans vos variables d'environnement pour la production.
+
+## 🤝 Contribution
+
+1. Fork le projet
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalite`)
+3. Committez vos changements (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`)
+4. Push vers la branche (`git push origin feature/nouvelle-fonctionnalite`)
+5. Ouvrez une Pull Request
+
+## 📝 Licence
+
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
+
+## 👨‍💻 Auteur
+
+Développé avec ❤️ pour l'apprentissage et la pratique des technologies web modernes.
+
+---
+
+**Note** : Ce projet est en développement continu. N'hésitez pas à signaler des bugs ou proposer des améliorations !
