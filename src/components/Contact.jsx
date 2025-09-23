@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
-import { buildApiUrl, config } from '../config/config';
+import { buildApiUrl, ENDPOINTS, REQUEST_CONFIG } from '../config/config';
 import SubmitButton from './SubmitButton';
 
 const Contact = () => {
@@ -25,71 +25,91 @@ const Contact = () => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const res = await axios.post(buildApiUrl(config.ENDPOINTS.CONTACT), {
+            const res = await axios.post(buildApiUrl(ENDPOINTS.CONTACT), {
                 name: formData.name,
                 email: formData.email,
                 message: formData.message
             }, {
                 withCredentials: true,
-                timeout: config.REQUEST_CONFIG.TIMEOUT
+                timeout: REQUEST_CONFIG.TIMEOUT
             }); 
             toast.success('Email Sent Successfully');
-
-            setFormData({ name: '', email: '', message: ''}); //* remove all data from inputs values
+            setFormData({
+                name: '',
+                email: '',
+                message: ''
+            });
             setIsLoading(false);
         } catch (error) {
-           toast.error(error.message);
-           console.log(error)
-           setIsLoading(false);
+            toast.error('Failed to send email');
+            setIsLoading(false);
         }
     }
 
   return (
-    <div className='mt-[8rem] mb-[4rem] container mx-auto px-[2rem] sm:px-[3rem] md:px-[4rem] lg:px-[6rem] xl:px-[6rem]  '>
-        <h2
-            className='text-[1.5rem] sm:text-[2rem] text-orange-600 font-medium'
-        >Contact Us</h2>
-        <form 
-            onSubmit={handleSubmit}
-            className='max-w-[60%] max-sm:min-w-[90%] mx-auto p-8 rounded-md space-y-6'
-        >
-            <div>
-                <label htmlFor="name" className='block text-gray-700 font-medium'>Name: </label>
-                <input 
-                    type='text'
-                    name='name'
-                    value={formData.name}
-                    onChange={handleChange}
-                    className='w-full mt-2 px-4 py-2 outline-none border focus:border-none border-gray-600 focus:ring-1 focus:ring-orange-600 rounded-md'
-                    required
-                />
+    <div className='bg-gray-100 min-h-screen py-10'>
+      <div className='container mx-auto px-[2rem] sm:px-[3rem] md:px-[4rem] lg:px-[5rem] xl:px-[6rem]'>
+        <h1 className='text-xl sm:text-[1.5rem] md:text-[1.6rem] lg:text-[1.8rem] font-bold text-gray-800 mb-[2rem]'>Contact Us</h1>
+        
+        <div className='w-[80%] sm:w-[60%] md:w-[40%] lg:w-[30%] mx-auto p-[20px] bg-white shadow-lg rounded-lg'>
+          <form onSubmit={handleSubmit}>
+            <div className='mb-4'>
+              <label 
+                htmlFor="name"
+                className='block text-lg font-medium text-gray-600'
+              >Name :</label>
+              <input 
+                type='text'
+                placeholder='Enter Your Name'
+                name='name'
+                value={formData.name}
+                onChange={handleChange}
+                className='w-full p-[10px] mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 
+                focus:ring-orange-600'
+                required
+              />
             </div>
-            <div>
-                <label htmlFor="email" className='block text-gray-700 font-medium'>Email: </label>
-                <input
-                    type='email'
-                    name='email'
-                    value={formData.email}
-                    onChange={handleChange}
-                    className='w-full mt-2 px-4 py-2 outline-none border focus:border-none border-gray-600 focus:ring-1 focus:ring-orange-600 rounded-md'
-                    required
-                />
+            
+            <div className='mb-4'>
+              <label 
+                htmlFor="email"
+                className='block text-lg font-medium text-gray-600'
+              >Email :</label>
+              <input 
+                type='email'
+                placeholder='Enter Your Email'
+                name='email'
+                value={formData.email}
+                onChange={handleChange}
+                className='w-full p-[10px] mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 
+                focus:ring-orange-600'
+                required
+              />
             </div>
-            <div>
-                <label htmlFor="message" className='block text-gray-700 font-medium'>Message: </label>
-                <textarea
-                    name='message'
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows='4'
-                    className='w-full mt-2 px-4 py-2 border border-gray-600 focus:border-none focus:outline-none outline-none rounded-md focus:ring-1 focus:ring-orange-600'
-                    required
-                ></textarea>
+            
+            <div className='mb-4'>
+              <label 
+                htmlFor="message"
+                className='block text-lg font-medium text-gray-600'
+              >Message :</label>
+              <textarea 
+                placeholder='Enter Your Message'
+                name='message'
+                value={formData.message}
+                onChange={handleChange}
+                rows={4}
+                className='w-full p-[10px] mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 
+                focus:ring-orange-600'
+                required
+              />
             </div>
+            
             <div>
-                <SubmitButton isLoading={isLoading} />
+              <SubmitButton isLoading={isLoading} />
             </div>
-        </form>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

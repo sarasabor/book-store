@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
-import { buildApiUrl, config } from '../config/config';
+import { buildApiUrl, ENDPOINTS, REQUEST_CONFIG } from '../config/config';
 
 //* the first thing is to create the context 
 export const BooksContext = createContext();
@@ -15,11 +15,11 @@ const BooksContextProvider = ({children}) => {
 
     const fetchBooks = async() => {
         try {
-            const response = await axios.get(buildApiUrl(config.ENDPOINTS.BOOKS), {
+            const response = await axios.get(buildApiUrl(ENDPOINTS.BOOKS), {
                 headers: {
                     'Authorization': `Bearer ${user.token}`
                 },
-                timeout: config.REQUEST_CONFIG.TIMEOUT
+                timeout: REQUEST_CONFIG.TIMEOUT
             });
             // console.log(response);
 

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
-import { buildApiUrl, config } from '../config/config'
+import { buildApiUrl, REQUEST_CONFIG } from '../config/config'
 
 const GetBookById = () => {
 
@@ -23,7 +23,7 @@ const GetBookById = () => {
         headers: {
           'Authorization': `Bearer ${user.token}`
         },
-        timeout: config.REQUEST_CONFIG.TIMEOUT
+        timeout: REQUEST_CONFIG.TIMEOUT
       });
       const { data } = res;
       setBook(data);
@@ -43,6 +43,7 @@ const GetBookById = () => {
   return (
     <div className='container mx-auto p-[12px]'>
       {loading && <p className='text-lg font-bold text-gray-600 flex justify-center'>Loading ...</p>}
+      {error && <p className='text-lg font-bold text-red-600 flex justify-center'>Error loading book</p>}
         <div className='flex flex-col md:flex-row items-center md:items-start gap-8'>
         <img 
           src={book.img}

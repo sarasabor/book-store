@@ -1,41 +1,29 @@
-// Configuration centralisée pour les URLs et constantes
-const config = {
-  // URLs de l'API
-  API_BASE_URL: process.env.REACT_APP_API_URL || 'http://localhost:5001',
-  
-  // URLs de production (Railway)
-  PRODUCTION_API_URL: process.env.REACT_APP_API_URL || 'https://your-railway-app.up.railway.app',
-  
-  // URLs du frontend (Vercel)
-  FRONTEND_URL: process.env.REACT_APP_FRONTEND_URL || 'http://localhost:3000',
-  PRODUCTION_FRONTEND_URL: process.env.REACT_APP_FRONTEND_URL || 'https://your-vercel-app.vercel.app',
-  
-  // Environnement
-  ENVIRONMENT: process.env.REACT_APP_ENVIRONMENT || 'development',
-  
-  // Endpoints API
-  ENDPOINTS: {
-    BOOKS: '/books',
-    AUTH: {
-      LOGIN: '/login',
-      REGISTER: '/register',
-      PROFILE: '/profile'
-    },
-    CONTACT: '/api/contact'
+// Configuration simplifiée pour éviter les problèmes d'import
+export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+export const PRODUCTION_API_URL = process.env.REACT_APP_API_URL || 'https://your-railway-app.up.railway.app';
+export const FRONTEND_URL = process.env.REACT_APP_FRONTEND_URL || 'http://localhost:3000';
+export const ENVIRONMENT = process.env.REACT_APP_ENVIRONMENT || 'development';
+
+export const ENDPOINTS = {
+  BOOKS: '/books',
+  AUTH: {
+    LOGIN: '/login',
+    REGISTER: '/register',
+    PROFILE: '/profile'
   },
-  
-  // Configuration des requêtes
-  REQUEST_CONFIG: {
-    TIMEOUT: 10000, // 10 secondes
-    RETRY_ATTEMPTS: 3
-  }
+  CONTACT: '/api/contact'
+};
+
+export const REQUEST_CONFIG = {
+  TIMEOUT: 10000,
+  RETRY_ATTEMPTS: 3
 };
 
 // Fonction pour obtenir l'URL de base selon l'environnement
 export const getBaseURL = () => {
-  return config.ENVIRONMENT === 'production' 
-    ? config.PRODUCTION_API_URL 
-    : config.API_BASE_URL;
+  return ENVIRONMENT === 'production' 
+    ? PRODUCTION_API_URL 
+    : API_BASE_URL;
 };
 
 // Fonction pour construire les URLs complètes
@@ -43,6 +31,15 @@ export const buildApiUrl = (endpoint) => {
   return `${getBaseURL()}${endpoint}`;
 };
 
-// Export nommé pour config
+// Configuration complète pour compatibilité
+const config = {
+  API_BASE_URL,
+  PRODUCTION_API_URL,
+  FRONTEND_URL,
+  ENVIRONMENT,
+  ENDPOINTS,
+  REQUEST_CONFIG
+};
+
 export { config };
 export default config;
