@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
-import { buildApiUrl, config } from '../config/config';
+import { buildApiUrl } from '../config/config';
 import SubmitButton from './SubmitButton';
 
 const SignupForm = () => {

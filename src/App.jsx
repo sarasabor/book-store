@@ -13,7 +13,7 @@ import NotFound from "./components/NotFound";
 import AuthContextProvider, { AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
 import GetBookById from "./components/GetBookById";
-import Contact from "./components/Contact";
+// import Contact from "./components/Contact";
 
 function App() {
 

@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { BooksContext } from '../context/BooksContext'
 import { booksGenreCollection } from '../constants/constants';
 
 const BooksGenre = ({title}) => {

@@ -25,7 +25,7 @@ const Contact = () => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const res = await axios.post(buildApiUrl(ENDPOINTS.CONTACT), {
+            await axios.post(buildApiUrl(ENDPOINTS.CONTACT), {
                 name: formData.name,
                 email: formData.email,
                 message: formData.message
