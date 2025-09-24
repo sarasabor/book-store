@@ -1,6 +1,6 @@
 // Configuration simplifiée pour éviter les problèmes d'import
 export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
-export const PRODUCTION_API_URL = process.env.REACT_APP_API_URL || 'https://your-railway-app.up.railway.app';
+export const PRODUCTION_API_URL = process.env.REACT_APP_API_URL || 'https://nice-sammy-sarasabor-6a46d8d9.koyeb.app';
 export const FRONTEND_URL = process.env.REACT_APP_FRONTEND_URL || 'http://localhost:3000';
 export const ENVIRONMENT = process.env.REACT_APP_ENVIRONMENT || 'development';
 

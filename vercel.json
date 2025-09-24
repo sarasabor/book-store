@@ -21,10 +21,5 @@
       "dest": "/index.html"
     }
   ],
-  "env": {
-    "REACT_APP_API_URL": "@react_app_api_url",
-    "REACT_APP_FRONTEND_URL": "@react_app_frontend_url",
-    "REACT_APP_ENVIRONMENT": "production"
-  },
   "buildCommand": "npm run build"
 }
