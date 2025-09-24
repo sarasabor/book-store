@@ -62,6 +62,7 @@ const Footer = () => {
                   href="https://instagram.com"
                   className='text-gray-300 hover:text-orange-600 transition duration-[.5s] text-sm'
                   target='_blank'
+                  rel="noreferrer"
                 >
                   <FaInstagram size={30}/>
                 </a>
@@ -69,6 +70,7 @@ const Footer = () => {
                   href="https://tiktok.com"
                   className='text-gray-300 hover:text-orange-600 transition duration-[.5s] text-sm'
                   target='_blank'
+                  rel="noreferrer"
                 >
                   <FaTiktok size={30}/>
                 </a>
@@ -76,6 +78,7 @@ const Footer = () => {
                   href="https://twitter.com"
                   className='text-gray-300 hover:text-orange-600 transition duration-[.5s] text-sm'
                   target='_blank'
+                  rel="noreferrer"
                 >
                   <FaTwitter size={30}/>
                 </a>
