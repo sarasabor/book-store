@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useCallback } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext';
 import { buildApiUrl, REQUEST_CONFIG } from '../config/config';
@@ -14,7 +14,7 @@ const BooksByGenre = () => {
     const [ error, setError ] = useState(null);
     const [ loading, setLoading ] = useState(false);
 
-    const fetchBooksByGenre = async() => {
+    const fetchBooksByGenre = useCallback(async() => {
         setLoading(true);
         setError(null);
         try {
@@ -32,13 +32,13 @@ const BooksByGenre = () => {
         } finally {
             setLoading(false);
         }
-    }
+    }, [user, genre]);
 
     useEffect(() => {
         if(user) {
             fetchBooksByGenre();
         }
-    }, [user, genre]);
+    }, [user, genre, fetchBooksByGenre]);
 
   return (
     <div className='bg-gray-100 min-h-screen py-10'>

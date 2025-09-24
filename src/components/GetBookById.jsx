@@ -1,7 +1,5 @@
 import axios from 'axios'
-import React, { useContext } from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import React, { useContext, useState, useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 import { buildApiUrl, REQUEST_CONFIG } from '../config/config'
@@ -16,7 +14,7 @@ const GetBookById = () => {
   const [book, setBook] = useState('');
   const [error, setError] = useState('');
 
-  const fetchBook = async() => {
+  const fetchBook = useCallback(async() => {
     setLoading(true); //* Start Loading
     try {
       const res = await axios.get(buildApiUrl(`/books/${id}`), { 
@@ -32,13 +30,13 @@ const GetBookById = () => {
       setError(error);
       setLoading(false);
     }
-  }
+  }, [user, id]);
 
   useEffect(() => {
     if(user) {
       fetchBook();
     }
-  }, [user]);
+  }, [user, fetchBook]);
     
   return (
     <div className='container mx-auto p-[12px]'>
