@@ -15,10 +15,14 @@ const BooksContextProvider = ({children}) => {
 
     const fetchBooks = useCallback(async() => {
         try {
+            // Create headers object conditionally
+            const headers = {};
+            if (user && user.token) {
+                headers['Authorization'] = `Bearer ${user.token}`;
+            }
+
             const response = await axios.get(buildApiUrl(ENDPOINTS.BOOKS), {
-                headers: {
-                    'Authorization': `Bearer ${user.token}`
-                },
+                headers,
                 timeout: REQUEST_CONFIG.TIMEOUT
             });
             // console.log(response);
@@ -32,10 +36,9 @@ const BooksContextProvider = ({children}) => {
     }, [user]);
 
     useEffect(() => {
-        if(user) {
-            fetchBooks();
-        }
-    }, [user, fetchBooks]);
+        // Fetch books regardless of user authentication status
+        fetchBooks();
+    }, [fetchBooks]);
 
   return (
     <BooksContext.Provider 

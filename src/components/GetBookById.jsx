@@ -17,10 +17,14 @@ const GetBookById = () => {
   const fetchBook = useCallback(async() => {
     setLoading(true); //* Start Loading
     try {
+      // Create headers object conditionally
+      const headers = {};
+      if (user && user.token) {
+        headers['Authorization'] = `Bearer ${user.token}`;
+      }
+
       const res = await axios.get(buildApiUrl(`/books/${id}`), { 
-        headers: {
-          'Authorization': `Bearer ${user.token}`
-        },
+        headers,
         timeout: REQUEST_CONFIG.TIMEOUT
       });
       const { data } = res;
@@ -33,10 +37,9 @@ const GetBookById = () => {
   }, [user, id]);
 
   useEffect(() => {
-    if(user) {
-      fetchBook();
-    }
-  }, [user, fetchBook]);
+    // Fetch book regardless of user authentication status
+    fetchBook();
+  }, [fetchBook]);
     
   return (
     <div className='container mx-auto p-[12px]'>

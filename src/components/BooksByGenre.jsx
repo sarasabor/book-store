@@ -18,8 +18,14 @@ const BooksByGenre = () => {
         setLoading(true);
         setError(null);
         try {
+            // Create headers object conditionally
+            const headers = {};
+            if (user && user.token) {
+                headers['Authorization'] = `Bearer ${user.token}`;
+            }
+
             const response = await axios.get(buildApiUrl(`/books/genre/${genre}`), {
-                headers: {'Authorization': `Bearer ${user.token}`},
+                headers,
                 timeout: REQUEST_CONFIG.TIMEOUT
             });
             const data = await response.data;
@@ -35,10 +41,9 @@ const BooksByGenre = () => {
     }, [user, genre]);
 
     useEffect(() => {
-        if(user) {
-            fetchBooksByGenre();
-        }
-    }, [user, genre, fetchBooksByGenre]);
+        // Fetch books by genre regardless of user authentication status
+        fetchBooksByGenre();
+    }, [fetchBooksByGenre]);
 
   return (
     <div className='bg-gray-100 min-h-screen py-10'>

@@ -38,11 +38,11 @@ function AppContent() {
       <Routes>
       {/* HERO SECTION */}
       <Route path="/" element={<Hero />} />
-      <Route path="/books/genre/:genre" element={user ? <BooksByGenre /> : <Navigate to='/login' />} />
+      <Route path="/books/genre/:genre" element={<BooksByGenre />} />
       {/* ENDING HERO SECTION */}
 
-      <Route path="/books" element={user ? <AllBooks /> : <Navigate to="/login" />} />
-      <Route path="/books/:id" element={user ? <GetBookById /> : <Navigate to="/login"/>} />
+      <Route path="/books" element={<AllBooks />} />
+      <Route path="/books/:id" element={<GetBookById />} />
       <Route path="/sign-up" element={!user ? <SignupForm /> : <Navigate to='/' />} />
       <Route path="/login" element={!user ? <LoginForm /> : <Navigate to='/' /> } />
       <Route path="*" element={<NotFound />} />
