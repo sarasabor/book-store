@@ -43,7 +43,7 @@ const LoginForm = () => {
             setIsLoading(false);
             
         } catch (error) {
-            const { data } = error.response;
+            const data = error.response?.data || 'Une erreur est survenue';
             // console.log(error);
             setErrors(data);
             setIsLoading(false);

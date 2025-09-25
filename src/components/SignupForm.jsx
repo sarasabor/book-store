@@ -36,7 +36,7 @@ const SignupForm = () => {
 
             setIsLoading(false);
         } catch (error) {
-            setErrors(error.response.data);
+            setErrors(error.response?.data || 'Une erreur est survenue');
             // console.log(error);
             setIsLoading(false);
         }
