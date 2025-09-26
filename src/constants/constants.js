@@ -5,7 +5,11 @@ export const navLinks = [
         text : "Books"
     },
     {
-        href : "/about-us",
+        href : "/favorites",
+        text : "Favoris"
+    },
+    {
+        href : "/about",
         text : "About Us"
     },
     {

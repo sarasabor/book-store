@@ -5,14 +5,14 @@ import { FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <div className='bg-gray-800 text-slate-100 mt-[10rem] py-[4rem]'>
+    <div className='bg-slate-800 text-slate-100 mt-[8rem] py-16'>
         <footer className='px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12'>
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'>
             {/* LOGO AND DESCRIPTION */}
             <div>
               <Link to='/'>
                 <h1 
-                  className='text-3xl font-semibold text-orange-600'
+                  className='text-3xl font-semibold text-blue-400 hover:text-blue-300 transition-colors duration-200'
                 >Book Store</h1>
               </Link>
               <p
@@ -28,7 +28,7 @@ const Footer = () => {
                   <li key={index}>
                     <Link 
                       to={customer.href}
-                      className='text-gray-300 hover:text-orange-600 transition duration-[.5s] text-sm '
+                      className='text-slate-300 hover:text-blue-400 transition duration-200 text-sm'
                     >
                       {customer.text}
                     </Link>
@@ -45,7 +45,7 @@ const Footer = () => {
                   <li key={index}>
                   <Link 
                     to={link.href}
-                    className='text-gray-300 hover:text-orange-600 transition duration-[.5s] text-sm '
+                    className='text-slate-300 hover:text-blue-400 transition duration-200 text-sm'
                   >
                     {link.text}
                   </Link>
@@ -60,7 +60,7 @@ const Footer = () => {
               <div className='flex gap-3 mt-4'>
                 <a 
                   href="https://instagram.com"
-                  className='text-gray-300 hover:text-orange-600 transition duration-[.5s] text-sm'
+                  className='text-slate-300 hover:text-blue-400 transition duration-200 text-sm'
                   target='_blank'
                   rel="noreferrer"
                 >
@@ -68,7 +68,7 @@ const Footer = () => {
                 </a>
                 <a 
                   href="https://tiktok.com"
-                  className='text-gray-300 hover:text-orange-600 transition duration-[.5s] text-sm'
+                  className='text-slate-300 hover:text-blue-400 transition duration-200 text-sm'
                   target='_blank'
                   rel="noreferrer"
                 >
@@ -76,7 +76,7 @@ const Footer = () => {
                 </a>
                 <a 
                   href="https://twitter.com"
-                  className='text-gray-300 hover:text-orange-600 transition duration-[.5s] text-sm'
+                  className='text-slate-300 hover:text-blue-400 transition duration-200 text-sm'
                   target='_blank'
                   rel="noreferrer"
                 >

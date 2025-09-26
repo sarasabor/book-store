@@ -5,7 +5,7 @@ import RightSection from './RightSection'
 
 const Navbar = () => {
   return (
-    <div className='px-4 sm:px-6 lg:px-8 xl:px-[6.2rem] 2xl:px-32 bg-slate-200 flex justify-between py-[2rem]'>
+    <div className='px-4 sm:px-6 lg:px-8 xl:px-[6.2rem] 2xl:px-32 bg-white border-b border-slate-200 shadow-sm flex justify-between py-4'>
         
         {/* Mobile Section */}
         <section className="md:hidden w-full ">
